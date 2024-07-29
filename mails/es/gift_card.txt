@@ -1,0 +1,10 @@
+Hola {firstname} {lastname},
+
+¡Gracias por tu compra! Aquí tienes tu código de tarjeta regalo:
+
+Código: {gift_card_code}
+Importe: {gift_card_amount}€
+
+Este código es válido hasta: {date_to}
+
+{store_text}

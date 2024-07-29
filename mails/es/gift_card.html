@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarjeta Regalo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #EDF6F9;
+            color: #1D1D1B;
+        }
+        .email-container {
+            width: 100%;
+            background-color: #EDF6F9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .email-content {
+            max-width: 600px;
+            background-color: #FFFFFF;
+            color: #1D1D1B;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 700;
+            color: #006D77;
+        }
+        .gift-card {
+            background-color: #FFDDD2;
+            color: #1D1D1B;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .gift-card-code {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .gift-card-amount {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        .valid-until {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .store-text {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #E29578;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #83C5BE;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-content">
+            <div class="header">
+                <h2>Tu tarjeta regalo.</h2>
+            </div>
+            <div class="gift-card">
+                <p class="gift-card-code">{gift_card_code}</p>
+                <p class="gift-card-amount">Importe: {gift_card_amount}€</p>
+            </div>
+            <p class="valid-until">Este código es válido hasta: {date_to}</p>
+            <p class="store-text">{store_text}</p>
+            <div class="footer">
+                <p>La mejor tienda de muebles.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
