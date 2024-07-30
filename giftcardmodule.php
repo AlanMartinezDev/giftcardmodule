@@ -21,9 +21,6 @@ class GiftCardModule extends Module
         $this->description = $this->l('Módulo para Tarjeta Regalo.');
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
         $this->confirmUninstall = $this->l('¿Seguro que quieres desinstalar?');
-
-        // Ruta del logotipo
-        $this->logo = _MODULE_DIR_ . $this->name . '/views/img/logo.png';
     }
 
     public function install()
@@ -161,10 +158,14 @@ class GiftCardModule extends Module
 
         // Determinar el texto del asunto y el texto del correo según el ID de la tienda
         $storeText = '';
+        $templateFile = '';
+
         if ($order->id_shop == 2) {
             $storeText = 'Home Heavenly';
+            $templateFile = 'homeheavenly';
         } elseif ($order->id_shop == 4) {
             $storeText = 'Don Tresillo';
+            $templateFile = 'dontresillo';
         }
 
         $subjectCustomer = $this->l('Tu tarjeta regalo del pedido #') . $order->reference;
@@ -176,7 +177,7 @@ class GiftCardModule extends Module
         // Enviar correo al cliente
         $mail_sent_to_customer = Mail::Send(
             (int)$order->id_lang,
-            'gift_card',
+            $templateFile,
             $subjectCustomer,
             $templateVars,
             $customer->email,
@@ -185,7 +186,7 @@ class GiftCardModule extends Module
             null,
             null,
             null,
-            _PS_MODULE_DIR_ . $this->name . '/mails/',
+            _PS_MODULE_DIR_ . $this->name . '/mails/es/',
             false,
             (int)$order->id_shop
         );
@@ -193,7 +194,7 @@ class GiftCardModule extends Module
         // Enviar correo a la dirección de resguardo
         $mail_sent_to_reserve = Mail::Send(
             (int)$order->id_lang,
-            'gift_card',
+            $templateFile,
             $subjectReserve,
             $templateVars,
             'tarjetaregalo@homeheavenly.com',
@@ -202,7 +203,7 @@ class GiftCardModule extends Module
             null,
             null,
             null,
-            _PS_MODULE_DIR_ . $this->name . '/mails/',
+            _PS_MODULE_DIR_ . $this->name . '/mails/es/',
             false,
             (int)$order->id_shop
         );
