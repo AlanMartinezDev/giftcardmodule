@@ -11,7 +11,7 @@ class GiftCardModule extends Module
         $this->name = 'giftcardmodule';
         $this->tab = 'front_office_features';
         $this->version = '1.0.0';
-        $this->author = 'Your Name';
+        $this->author = 'Alan Martinez';
         $this->need_instance = 0;
         $this->bootstrap = true;
 
