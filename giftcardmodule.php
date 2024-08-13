@@ -69,7 +69,7 @@ class GiftCardModule extends Module
         $order = new Order($params['id_order']);
         $newOrderStatus = $params['newOrderStatus']->id;
 
-        // Solo proceder si el estado es 2
+        // Solo proceder si el estado es "pago aceptado"
         if ($newOrderStatus != 2) {
             return;
         }
@@ -77,9 +77,14 @@ class GiftCardModule extends Module
         $products = $order->getProducts();
 
         foreach ($products as $product) {
-            if (in_array($product['product_reference'], ['TARJ-20', 'TARJ-50', 'TARJ-100'])) {
+            if (in_array($product['product_reference'], ['TARJ-50', 'TARJ-100', 'TARJ-200'])) {
                 $amount = (float)str_replace('TARJ-', '', $product['product_reference']);
-                $this->generateGiftCard($order, $amount);
+                $quantity = (int)$product['product_quantity'];
+
+                // Generar una tarjeta regalo por cada unidad comprada
+                for ($i = 0; $i < $quantity; $i++) {
+                    $this->generateGiftCard($order, $amount);
+                }
             }
         }
     }
@@ -102,7 +107,7 @@ class GiftCardModule extends Module
         $giftCardInfo = '';
 
         foreach ($products as $product) {
-            if (in_array($product['product_reference'], ['TARJ-20', 'TARJ-50', 'TARJ-100'])) {
+            if (in_array($product['product_reference'], ['TARJ-50', 'TARJ-100', 'TARJ-200'])) {
                 $amount = (float)str_replace('TARJ-', '', $product['product_reference']);
                 $giftCardInfo .= 'Gift Card: ' . $amount . '€<br>';
             }
@@ -138,11 +143,11 @@ class GiftCardModule extends Module
         $cartRule->priority = 1;
 
         if ($cartRule->add()) {
-            $this->sendEmail($order, $cartRule->code);
+            $this->sendEmail($order, $cartRule->code, $amount);
         }
     }
 
-    private function sendEmail($order, $giftCardCode)
+    private function sendEmail($order, $giftCardCode, $amount)
     {
         $customer = new Customer($order->id_customer);
         $dateTo = date('Y-m-d', strtotime('+1 year'));
@@ -151,7 +156,7 @@ class GiftCardModule extends Module
             '{lastname}' => $customer->lastname,
             '{email}' => $customer->email,
             '{gift_card_code}' => $giftCardCode,
-            '{gift_card_amount}' => number_format($order->total_paid, 2, ',', '.'),
+            '{gift_card_amount}' => number_format($amount, 2, ',', '.'), // Ajuste para mostrar el valor correcto
             '{date_to}' => $dateTo,
             '{order_reference}' => $order->reference,
         ];
