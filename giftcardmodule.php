@@ -10,14 +10,14 @@ class GiftCardModule extends Module
     {
         $this->name = 'giftcardmodule';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.0';
+        $this->version = '1.1.0';
         $this->author = 'Alan Martinez';
         $this->need_instance = 0;
         $this->bootstrap = true;
 
         parent::__construct();
 
-        $this->displayName = $this->l('Tarjeta Regalo Módulo');
+        $this->displayName = $this->l('Tarjeta Regalo');
         $this->description = $this->l('Módulo para Tarjeta Regalo.');
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
         $this->confirmUninstall = $this->l('¿Seguro que quieres desinstalar?');
