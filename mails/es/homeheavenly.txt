@@ -8,3 +8,5 @@ Importe: {gift_card_amount}€
 Este código es válido hasta: {date_to}
 
 {store_text}
+
+Visítanos en www.homeheavenly.com

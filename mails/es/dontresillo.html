@@ -10,7 +10,7 @@
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
             background-color: #EDF6F9;
-            color: #1D1D1B;
+            color: #000000;
         }
 
         .email-container {
@@ -25,7 +25,7 @@
         .email-content {
             max-width: 600px;
             background-color: #FFFFFF;
-            color: #1D1D1B;
+            color: #000000;
             padding: 20px;
             text-align: center;
             border-radius: 10px;
@@ -40,15 +40,16 @@
             margin: 0;
             font-size: 32px;
             font-weight: 700;
-            color: #006D77;
+            color: #B50404;
         }
 
         .gift-card {
-            background-color: #FFDDD2;
-            color: #1D1D1B;
+            background-color: #B50404;
+            color: #FFFFFF;
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
+            border: 2px dashed #FFFFFF;
         }
 
         .gift-card-code {
@@ -70,13 +71,18 @@
         .store-text {
             font-size: 18px;
             margin-top: 20px;
-            color: #E29578;
+            color: #B50404;
         }
 
         .footer {
             margin-top: 20px;
             font-size: 12px;
-            color: #83C5BE;
+            color: #000000;
+        }
+
+        .footer a {
+            color: #841812;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -85,16 +91,17 @@
     <div class="email-container">
         <div class="email-content">
             <div class="header">
-                <h2>Tu tarjeta regalo.</h2>
+                <h2>Tarjeta regalo Don Tresillo</h2>
             </div>
             <div class="gift-card">
                 <p class="gift-card-code">{gift_card_code}</p>
-                <p class="gift-card-amount">Importe: {gift_card_amount}€</p>
+                <p class="gift-card-amount">Importe: {gift_card_amount} €</p>
             </div>
             <p class="valid-until">Este código es válido hasta: {date_to}</p>
             <p class="store-text">{store_text}</p>
             <div class="footer">
                 <p>La mejor tienda de muebles.</p>
+                <p>Visítanos en <a href="https://www.dontresillo.com">www.dontresillo.com</a></p>
             </div>
         </div>
     </div>
